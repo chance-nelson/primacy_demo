@@ -126,27 +126,6 @@ function resetTable() {
     updateFastaSequenceTable();
 }
 
-// function updateRegionAvoidHighlightTable() {
-//     let row = region_picker_table[0];
-//
-//     for(i = 0; i < sequence_end_range - sequence_start_range; i++) {
-//         let cell = row[i]
-//         cell.id  = i.toString();
-//
-//         let sequence_index = sequence_start_range + i;
-//
-//         if(fasta_nucleotide_sequence[sequence_index] == "X") {
-//             cell.innerHTML = "<span style='color: red;'>" +
-//                              fasta_nucleotide_sequence[sequence_index]  +
-//                              "</span>";
-//         } else {
-//             cell.innerHTML = "<span style='color: green;'>" +
-//                              fasta_nucleotide_sequence[sequence_index] +
-//                              "</span>";
-//         }
-//     }
-// }
-
 function updateSequenceIdentifierTextarea() {
     sequence_identifier_textarea.value = fasta_header;
 }
@@ -202,7 +181,6 @@ function highlightFastaSequence() {
 }
 
 function rangeUpdate() {
-    console.log(ranges.length);
     switch(ranges.length) {
         // Just add the number to ranges, highlight the table element in green
         case 0:
@@ -224,10 +202,6 @@ function rangeUpdate() {
     }
 
 }
-
-
-lower_range.addEventListener('change', rangeUpdate);
-end_range.addEventListener('change', rangeUpdate);
 
 
 //listening
@@ -252,16 +226,18 @@ ipcRenderer.on('LOADMODULE', (event, arg) =>{
 
 //loads tab on click
 module1.addEventListener('click', function (){
-    console.log("click");
     sendMessage('LOADMODULE', 1);
 });
+
+
+lower_range.addEventListener('change', rangeUpdate);
+end_range.addEventListener('change', rangeUpdate);
 
 resetButton.addEventListener('click', function() {
     resetTable();
 });
 
 submitButton.addEventListener('click', function () {
-
     try {
         if (startRange && endRange){
             var startString = validate.parseTemperature(startRange.value.toString());
