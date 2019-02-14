@@ -8,6 +8,8 @@
  */
 
 
+/* HTML ELEMENTS */
+
 const module0                      = document.getElementById("module0");
 const module1                      = document.getElementById("module1");
 const submit_button                = document.getElementById("submitButton");
@@ -28,6 +30,8 @@ const background_sequence_filepicker = document.getElementById("backgroundseqfil
 const background_sequence_table      = document.getElementById("backgroundseqtable");
 
 
+/* PIPELINE VARS */
+
 var background_sequences = [];
 
 var ranges = [];
@@ -39,6 +43,9 @@ var fasta_header              = "";
 var sequence_start_range = null;
 var sequence_end_range   = null;
 
+
+/* IMPORTS */
+
 //gets users home directory
 const os = require('os');
 const fs = require('fs');
@@ -47,6 +54,8 @@ var validate = require('./lib/input_validation.js');
 
 const {ipcRenderer} = require('electron');
 
+
+/* FUNCTIONS */
 
 function sendMessage(channel, message){
     ipcRenderer.send(channel, message);
@@ -206,7 +215,8 @@ function rangeUpdate() {
 }
 
 
-//listening
+/* IPC HANDLERS */
+
 ipcRenderer.on('EXECUTE', (event, arg) =>{
     if(arg != null){
         console.log("error received");
@@ -225,6 +235,9 @@ ipcRenderer.on('NEW', (event, arg) =>{
 ipcRenderer.on('LOADMODULE', (event, arg) =>{
     console.log("DENIED");
 })
+
+
+/* EVENT LISTENERS */
 
 //loads tab on click
 module1.addEventListener('click', function (){
