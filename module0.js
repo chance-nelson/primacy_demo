@@ -7,6 +7,7 @@
  *      - Chance Nelson <chance-nelson@nau.edu>
  */
 
+
 const module0                      = document.getElementById("module0");
 const module1                      = document.getElementById("module1");
 const submit_button                = document.getElementById("submitButton");
@@ -45,6 +46,7 @@ const fs = require('fs');
 var validate = require('./lib/input_validation.js');
 
 const {ipcRenderer} = require('electron');
+
 
 function sendMessage(channel, message){
     ipcRenderer.send(channel, message);
