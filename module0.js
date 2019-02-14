@@ -80,19 +80,26 @@ function updateFastaSequenceTable() {
 
         cell.innerHTML = fasta_nucleotide_sequence[i];
 
-        if(cell.innerHTML == "A"){
-            cell.style.color="rgb(255,130,130)";
-        }
-        if(cell.innerHTML == "G"){
-            cell.style.color="rgb(130,130,255)";
-        }
-        if(cell.innerHTML == "C"){
-            cell.style.color="rgb(130,255,130)";
-        }
-        if(cell.innerHTML == "T"){
-            cell.style.color="rgb(255,130,255)";
+        // Change the color of the cell based on the nucleotide
+        switch(cell.innerHTML) {
+            case 'A':
+                cell.style.color="rgb(255,130,130)";
+                break;
+
+            case 'G':
+                cell.style.color="rgb(130,130,255)";
+                break;
+
+            case 'C':
+                cell.style.color="rgb(130,255,130)";
+                break;
+
+            case 'T':
+                cell.style.color="rgb(255,130,255)";
+                break;
         }
 
+        // Handle selections for upper and lower ranges
         cell.addEventListener('click', function() {
             click_count++;
 
